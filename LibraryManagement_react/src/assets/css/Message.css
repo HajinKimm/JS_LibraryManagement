@@ -1,0 +1,15 @@
+.show {
+  margin-top: 20px;
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  font-size: 20px;
+  transition: 0.3s;
+  opacity: 0;
+  text-align: center;
+}
+.show.on {
+  opacity: 1;
+  background: rgba(230, 135, 104, 0.3);
+}
+/*# sourceMappingURL=Message.css.map */

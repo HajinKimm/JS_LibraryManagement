@@ -1,0 +1,38 @@
+.book-list {
+  width: 49%;
+  border: 1px solid #dcdcdc;
+  box-sizing: border-box;
+  padding: 30px;
+}
+.book-list .book-table .title {
+  width: 20%;
+}
+.book-list .book-table .author,
+.book-list .book-table .bookcode {
+  width: 30%;
+}
+.book-list .book-table th,
+.book-list .book-table td {
+  text-align: center;
+  height: 50px;
+  border-bottom: 1px solid #dcdcdc;
+  vertical-align: middle;
+  font-size: 18px;
+}
+.book-list .book-table th {
+  border-bottom: 2px solid #000;
+}
+.book-list .book-table tr:nth-child(odd) td {
+  background: rgba(232, 247, 253, 0.5);
+}
+.book-list .book-table button {
+  width: 35px;
+  height: 35px;
+  border: none;
+  background: #000;
+  color: #fff;
+}
+.book-list .book-table button:first-child {
+  margin-right: 10px;
+}
+/*# sourceMappingURL=BookList.css.map */

@@ -1,0 +1,49 @@
+.book-list {
+    width: 49%;
+    border: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    padding: 30px;
+
+    .book-table {
+        .title {
+            width: 20%;
+        }
+
+        .author,
+        .bookcode {
+            width: 30%;
+        }
+
+        .del {}
+
+        th,
+        td {
+            text-align: center;
+            height: 50px;
+            border-bottom: 1px solid #dcdcdc;
+            vertical-align: middle;
+            font-size: 18px;
+        }
+
+        th {
+            border-bottom: 2px solid #000;
+        }
+
+        tr:nth-child(odd) td {
+            background: rgba(232, 247, 253, 0.5);
+        }
+
+        button {
+            width: 35px;
+            height: 35px;
+            border: none;
+            background: #000;
+            color: #fff;
+
+            &:first-child {
+                margin-right: 10px;
+            }
+        }
+    }
+
+}
