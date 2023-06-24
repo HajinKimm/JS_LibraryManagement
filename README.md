@@ -4,8 +4,8 @@
 <br>기존에 JavaScript로 만든 프로그램을 react + sass로 리팩토링
 
 ---
-- Version1. JavaScript + css : 
-- Version2. React + sass : 
+- Version1. JavaScript + css : https://hajinkimm.github.io/LibraryManagement/LibraryManagement_js/
+- Version2. React + sass : https://hajinkimm.github.io/LibraryManagement/LibraryManagement_react/dist/
 ---
 ## 1. 구조
 - 파일구조
