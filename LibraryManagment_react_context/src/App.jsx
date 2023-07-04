@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import GlobalStyle from './styled/GlobalStyle ';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { UserProvier } from './contexts/UserContext';
+// import Header from './components/Header';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import AddBook from './pages/AddBook';
+import BookList from './pages/BookList';
+import { AuthorityProvider } from './contexts/AuthorityContext';
+import Logout from './pages/Logout';
 
-function App() {
-  const [count, setCount] = useState(0)
+const AppProvider = ({ contexts, children }) => contexts.reduce(
+  (prev, context) => React.createElement(context, {
+    children: prev
+  }), 
+  children
+);
 
+const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <GlobalStyle />
 
-export default App
+      <BrowserRouter>
+
+        <AppProvider contexts={[UserProvier, AuthorityProvider]}  >
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/logout' element={<Logout/>}/>
+            <Route path='/addbook' element={<AddBook/>}/>
+            <Route path='/edit'>
+              <Route path=':editID' element={<AddBook/>}/>
+            </Route>
+            <Route path='/bookList' element={<BookList/>}/>
+          </Routes>
+        </AppProvider>
+      </BrowserRouter>
+    </>
+  );
+};
+
+export default App;
