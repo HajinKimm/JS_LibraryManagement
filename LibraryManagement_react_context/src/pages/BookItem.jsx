@@ -13,7 +13,7 @@ const BookItem = ({item}) => {
             <td>{author}</td>
             <td>{bookcode}</td>
             <td>
-                <button onClick={() => { navigate(`/edit/${id}`) }}><i className="xi-pen"></i></button>
+                <button onClick={() => {setIsEdit(true), navigate(`/edit/${id}`) }}><i className="xi-pen"></i></button>
                 <button onClick={() => onDel(id)}><i className="xi-trash"></i></button>
             </td>
         </tr>
