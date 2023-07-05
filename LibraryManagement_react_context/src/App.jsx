@@ -1,6 +1,6 @@
 import React from 'react';
 import GlobalStyle from './styled/GlobalStyle ';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { HashRouter , BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { UserProvier } from './contexts/UserContext';
 // import Header from './components/Header';
 import Home from './pages/Home';
@@ -22,7 +22,7 @@ const App = () => {
     <>
       <GlobalStyle />
 
-      <BrowserRouter>
+      <HashRouter>
 
         <AppProvider contexts={[UserProvier, AuthorityProvider]}  >
           <Routes>
@@ -36,7 +36,7 @@ const App = () => {
             <Route path='/bookList' element={<BookList/>}/>
           </Routes>
         </AppProvider>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 };
