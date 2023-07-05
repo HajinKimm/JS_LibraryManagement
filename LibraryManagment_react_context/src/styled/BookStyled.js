@@ -58,6 +58,9 @@ export const BookListWrap = styled.div`
 
         h2{
             ${h2}
+            span{
+                font-size: 18px;
+            }
         }
 
         .book-list {
@@ -69,16 +72,13 @@ export const BookListWrap = styled.div`
             .book-table {
                 width: 100%;
                 caption{display: none;}
-                .title {
+                .genre, .author, .bookcode{
                     width: 20%;
                 }
-
-                .author, .bookcode {
+                .title {
                     width: 30%;
                 }
-
-                .del {}
-
+                .del {width:auto}
                 th,
                 td {
                     text-align: center;
@@ -127,21 +127,22 @@ export const AddBookWrap = styled.div`
             border: 1px solid #dcdcdc;
             box-sizing: border-box;
             padding: 100px;
-        
             .book-form {
                 
                 p {
                     margin-bottom: 50px;
             
                     label {
-                    display: block;
-                    margin-bottom: 10px;
-                    font-weight: 700;
-                    font-size: 20px;
+                        width: 100px;
+                        display: inline-block;
+                        margin-bottom: 10px;
+                        font-weight: 700;
+                        font-size: 20px;
+                        margin-right: 30px;
                     }
             
                     input {
-                    width: 100%;
+                    width: 1050px;
                     height: 60px;
                     border: 1px solid #999;
                     padding: 0 20px;

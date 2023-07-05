@@ -6,7 +6,7 @@ const initialState = {
     data: localStorage.getItem('data')
             ? JSON.parse(localStorage.getItem('data'))
             : [
-                {id:1, title:'(예시) 소설', author:'(예시) 지은이', bookcode:'(예시) 002943'}
+                {id:1,genre:'(예시) 소설', title:'(예시) 종이여자', author:'(예시) 기욤뮈소', bookcode:'(예시) 000001'}
             ]
         }
 

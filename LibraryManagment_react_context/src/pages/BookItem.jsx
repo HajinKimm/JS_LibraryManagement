@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 const BookItem = ({item}) => {
     const { onEdit, onDel, setIsEdit } = useUser()
-    const { id, title, author, bookcode } = item
+    const { id,genre, title, author, bookcode } = item
     const navigate = useNavigate()
     return (
         <tr>
+            <td>{genre}</td>
             <td>{title}</td>
             <td>{author}</td>
             <td>{bookcode}</td>

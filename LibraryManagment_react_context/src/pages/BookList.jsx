@@ -6,15 +6,17 @@ import Header from '../components/Header';
 
 const BookList = () => {
     const {data}= useUser()
+    const dataLength = data.length
     return (
         <BookListWrap>
             <Header/>
             <div className="inner">
-                <h2>도서 목록</h2>
+                <h2>도서 목록 &nbsp;&nbsp; <span> [ 총 {dataLength}개 ]</span></h2>
                 <div className="book-list">
                     <table className='book-table'>
                         <caption>도서 관리 시스템</caption>
                         <colgroup>
+                            <col className='genre' />
                             <col className='title' />
                             <col className='author' />
                             <col className='bookcode' />
@@ -23,6 +25,7 @@ const BookList = () => {
                         <thead>
                             <tr>
                                 <th>장르</th>
+                                <th>제목</th>
                                 <th>저자</th>
                                 <th>코드</th>
                                 <th>관리</th>

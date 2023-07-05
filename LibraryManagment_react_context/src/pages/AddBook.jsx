@@ -13,9 +13,9 @@ const AddBook = () => {
         isEdit?
         data.find(item=>item.id === Number(editID))
         :
-        { title:'', author:'', bookcode:'' }
+        {genre:'', title:'', author:'', bookcode:'' }
         )
-    const {title, author, bookcode} = text
+    const {genre, title, author, bookcode} = text
 
     const changeInput =e=>{
         const {value,name} = e.target
@@ -42,12 +42,16 @@ const AddBook = () => {
                 <div className="book-input">
                     <form className="book-form" onSubmit={onSubmit}>
                         <p>
-                            <label htmlFor="title">장르</label>
-                            <input type="text" id='title' placeholder='북 장르입력 (소설)' value={title} name='title' onChange={changeInput} />
+                            <label htmlFor="genre">장르</label>
+                            <input type="text" id='genre' placeholder='북 장르입력 (소설)' value={genre} name='genre' onChange={changeInput} />
+                        </p>
+                        <p>
+                            <label htmlFor="title">제목</label>
+                            <input type="text" id='title' placeholder='북 제목입력 (종이여자)' value={title} name='title' onChange={changeInput} />
                         </p>
                         <p>
                             <label htmlFor="author">저자</label>
-                            <input type="text" id='author' placeholder='저자 입력 (임수정)' value={author} name='author' onChange={changeInput} />
+                            <input type="text" id='author' placeholder='저자 입력 (기욤뮈소)' value={author} name='author' onChange={changeInput} />
                         </p>
                         <p>
                             <label htmlFor="bookcode">책 코드</label>
