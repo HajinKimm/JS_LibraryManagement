@@ -1,37 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { AddBookWrap } from '../styled/BookStyled';
-import { useUser } from '../contexts/UserContext';
+import React from 'react';
+import { AddBookWrap } from '../../styled/BookStyled';
+import Header from '../main/Header';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBook, changeInput, editBook } from './addFormSlice';
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../components/Header';
 
 const AddBook = () => {
-    const {onAdd,onEdit, setIsEdit, isEdit,data} = useUser()
     const {editID} = useParams()
-    const navigate = useNavigate()
-    const [text, setText] = useState(
-        isEdit?
-        data.find(item=>item.id === Number(editID))
-        :
-        {genre:'', title:'', author:'', bookcode:'' }
-        )
+    const {text} = useSelector(state=>state.addForm)
     const {genre, title, author, bookcode} = text
-
-    const changeInput =e=>{
-        const {value,name} = e.target
-        setText({...text, [name]:value})
-    }
-    const onSubmit = e=>{
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const onSubmit=(e)=>{
         e.preventDefault()
-        if(!title || !author || !bookcode) return
-        if(isEdit){
-            onEdit(text, editID)
+        if(editID){
+            dispatch(editBook({text, editID}))
+
         }else{
-            onAdd(text)
+            dispatch(addBook(text))
         }
-        setIsEdit(false)
-        navigate('/')
+        navigate('/') 
+        dispatch(changeInput(''))
     }
-    console.log(text)
+    console.log(editID)
     return (
         <AddBookWrap>
             <Header/>
@@ -42,21 +33,22 @@ const AddBook = () => {
                     <form className="book-form" onSubmit={onSubmit}>
                         <p>
                             <label htmlFor="genre">장르</label>
-                            <input type="text" id='genre' placeholder='북 장르입력 (소설)' value={genre} name='genre' onChange={changeInput} />
+                            <input type="text" id='genre' placeholder='북 장르입력 (소설)' value={genre} name='genre' onChange={(e)=>dispatch(changeInput({...text, genre:e.target.value}))} />
                         </p>
                         <p>
                             <label htmlFor="title">제목</label>
-                            <input type="text" id='title' placeholder='북 제목입력 (종이여자)' value={title} name='title' onChange={changeInput} />
+                            <input type="text" id='title' placeholder='북 제목입력 (종이여자)' value={title} name='title' onChange={(e)=>dispatch(changeInput({...text, title:e.target.value}))} />
                         </p>
                         <p>
                             <label htmlFor="author">저자</label>
-                            <input type="text" id='author' placeholder='저자 입력 (기욤뮈소)' value={author} name='author' onChange={changeInput} />
+                            <input type="text" id='author' placeholder='저자 입력 (기욤뮈소)' value={author} name='author' onChange={(e)=>dispatch(changeInput({...text, author:e.target.value}))} />
                         </p>
                         <p>
                             <label htmlFor="bookcode">책 코드</label>
-                            <input type="text" id='bookcode' placeholder='책 코드 입력 (000001)' value={bookcode} name='bookcode' onChange={changeInput} />
+                            <input type="text" id='bookcode' placeholder='책 코드 입력 (000001)' value={bookcode} name='bookcode' onChange={(e)=>dispatch(changeInput({...text, bookcode:e.target.value}))} />
                         </p>
-                        {/* <p className='btnWrap'><button className='btn' type='submit'>추가</button></p> */}
+                        <p className='btnWrap'><button className='btn' type='submit'>추가</button></p>
+{/*                         
                         <p className='btnWrap'>
                             {
                                 isEdit?
@@ -68,6 +60,7 @@ const AddBook = () => {
                                 <button className='btn' type='submit'>{isEdit ? '수정' : '추가'}</button>
                             }
                         </p>
+                         */}
                     </form>
                 </div>
             </div>
