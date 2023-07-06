@@ -33,9 +33,9 @@ const Login = () => {
                             <label>비밀번호</label>
                             <input type="password"  placeholder='비밀번호 (1234)' value={password} onChange={(e)=>dispatch(loginInput({...text, password:e.target.value}))}/>
                         </p>
-                        <p className='btnWrap'><button type='submit' className='btn'>로그인</button></p>
 
                     </div>
+                        <p className='btnWrap'><button type='submit' className='btn'>로그인</button></p>
                 </form>
             </div>
         </LoginWrap>

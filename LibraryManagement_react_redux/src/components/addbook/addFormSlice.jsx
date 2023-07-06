@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState ={
-    text:{},
+    text:{genre:'', title:'', author:'', bookcode:''},
     no:localStorage.getItem('no')?
         JSON.parse(localStorage.getItem('no')) : 3,
     data: localStorage.getItem('data')?
@@ -16,13 +16,17 @@ const initialState ={
         {id:2, name:'제목순', category:'title', isOn:false},
         {id:3, name:'저자순', category:'author', isOn:false},
         {id:4, name:'코드순', category:'bookcode', isOn:false},
-    ]
+    ],
+    isEdit:false
 }
 
 export const addFormSlice = createSlice({
     name:'addBookForm',
     initialState,
     reducers:{
+        isEditChange(state, action){
+            state.isEdit = action.payload
+        },
         sortBy(state,action){
             const {category, id} = action.payload
             state.sort = state.sort.map(item=>item.id === id?{...item, isOn:true}:{...item, isOn:false})
@@ -71,5 +75,5 @@ export const addFormSlice = createSlice({
         }
     }
 })
-export const {changeInput,addBook,editBook ,delBook,sortBy} = addFormSlice.actions
+export const {changeInput,addBook,editBook ,delBook,sortBy, isEditChange} = addFormSlice.actions
 export default addFormSlice.reducer

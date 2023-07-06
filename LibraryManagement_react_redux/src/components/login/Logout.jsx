@@ -17,9 +17,9 @@ const Logout = () => {
                 <h2>LOGOUT</h2>
                 <div className='form'>
                 <div className='formWrap'>
+                    <p className='loginInfo'>로그아웃 하시겠습니까?</p>
                     <span>아이디 : {id}</span>
                     <span>이메일 : {email}</span>
-                    <p className='question'>로그아웃 하시겠습니까?</p>
                 </div>
                     <p className='btnWrap'>
                         <button onClick={()=>{navigate('/'), dispatch(onLogout()), dispatch(loginInput(''))}} className='btn'>예</button>

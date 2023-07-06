@@ -13,6 +13,7 @@ export const authoritySlice = createSlice({
         loginInput(state,action){
             const {email, password} = action.payload
             state.text = {email, password}
+            
         },
         onLogin(state, action){
             const {email, password} = action.payload

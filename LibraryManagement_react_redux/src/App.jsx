@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, HashRouter } from "react-router-dom";
 import Home from './components/main/Home';
 import Login from './components/login/Login';
 import Logout from './components/login/Logout';
@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div style={{width:'100%'}}>
       <GlobalStyle/>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
@@ -23,7 +23,7 @@ const App = () => {
           </Route>
         </Routes>
         <Footer/>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 };

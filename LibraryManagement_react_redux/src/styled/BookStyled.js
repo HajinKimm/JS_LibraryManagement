@@ -68,8 +68,8 @@ export const BookListWrap = styled.div`
             }
         }
         .sorBy{
-            text-align: end;
-            margin-bottom: 20px;
+            position: absolute;
+            top: 130px;right: 0;
             button{
                 margin-left: 10px;
                 padding: 5px 10px;
@@ -224,6 +224,7 @@ export const LoginWrap = styled.div`
             .formWrap{
                 width: 560px;
                 margin: auto;
+                padding-bottom: 30px;
                 p{
                     height: 50px;
                     vertical-align: middle;

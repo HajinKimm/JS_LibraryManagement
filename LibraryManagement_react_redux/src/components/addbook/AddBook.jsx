@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const AddBook = () => {
     const {editID} = useParams()
-    const {text} = useSelector(state=>state.addForm)
+    const {text, isEdit} = useSelector(state=>state.addForm)
     const {genre, title, author, bookcode} = text
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -21,7 +21,6 @@ const AddBook = () => {
             dispatch(addBook(text))
         }
         navigate('/') 
-        dispatch(changeInput(''))
     }
     console.log(editID)
     return (
@@ -48,7 +47,10 @@ const AddBook = () => {
                             <label htmlFor="bookcode">책 코드</label>
                             <input type="text" id='bookcode' placeholder='책 코드 입력 (000001)' value={bookcode}  onChange={(e)=>dispatch(changeInput({...text, bookcode:e.target.value}))} />
                         </p>
-                        <p className='btnWrap'><button className='btn' type='submit'>추가</button></p>
+                        
+                        <p className='btnWrap'><button className='btn' type='submit'>
+                            {isEdit?'수정':'추가'}    
+                        </button></p>
                     </form>
                 </div>
             </div>
