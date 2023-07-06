@@ -38,10 +38,15 @@ export const HeaderWrap = styled.div`
             transform: translateY(-50%);
             
             li{
-                margin-left: 50px;
+                box-sizing: border-box;
+                width: 125px;
+                text-align: center;
+                margin-left: 0px;
                 color:#999;
                 font-size: 18px;
-                
+                span{
+                    margin: 0;
+                }
                 a{
                     color:#fff;
                     font-size: 18px;
@@ -62,7 +67,23 @@ export const BookListWrap = styled.div`
                 font-size: 18px;
             }
         }
+        .sorBy{
+            text-align: end;
+            margin-bottom: 20px;
+            button{
+                margin-left: 10px;
+                padding: 5px 10px;
+                background: transparent;
+                border: 1px solid #999;
+                border-radius: 15px;
+                &:hover, &.on{
+                    background: #3281a8;
+                    color: #fff;
+                    border: 1px solid #3281a8;
+                }
 
+            }
+        }
         .book-list {
             width: 100%;
             border: 1px solid #dcdcdc;
@@ -230,6 +251,14 @@ export const LoginWrap = styled.div`
                     font-size: 25px;
                     font-weight: 700;
                 }
+                .loginInfo{
+                    border-bottom: 1px solid #dcdcdc;
+                    text-align:center;
+                    padding-bottom: 50px;
+                    margin-bottom: 75px;
+                    font-size: 25px;
+                    font-weight: 700;
+                }
             }
             .btnWrap{
                     text-align: center;
@@ -253,4 +282,9 @@ export const LoginWrap = styled.div`
                 }
         }
     }
+`
+
+export const FooterWrap = styled.div`
+height: 150px;
+background: #333;
 `

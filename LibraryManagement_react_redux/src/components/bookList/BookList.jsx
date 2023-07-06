@@ -2,15 +2,23 @@ import React from 'react';
 import { BookListWrap } from '../../styled/BookStyled';
 import Header from '../main/Header';
 import BookItem from './BookItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { sortBy } from '../addbook/addFormSlice';
+import BookSort from './BookSort';
 
 const BookList = () => {
-    const {data} = useSelector(state=>state.addForm)
+    const {data, sort} = useSelector(state=>state.addForm)
+    const dispatch = useDispatch()
     return (
         <BookListWrap>
             <Header/>
             <div className="inner">
                 <h2>도서 목록 &nbsp;&nbsp; <span> [ 총 {data.length}개 ]</span></h2>
+                <p className='sorBy'>
+                    {
+                        sort.map(item=><BookSort key={item.id} item={item}/>)
+                    }
+                </p>
                 <div className="book-list">
                     <table className='book-table'>
                         <caption>도서 관리 시스템</caption>

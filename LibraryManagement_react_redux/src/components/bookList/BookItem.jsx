@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { changeInput, delBook, editBook } from '../addbook/addFormSlice';
+import { changeInput, delBook } from '../addbook/addFormSlice';
 import { useNavigate} from 'react-router-dom';
 
 const BookItem = ({item}) => {
@@ -9,7 +9,7 @@ const BookItem = ({item}) => {
     const navigate = useNavigate()
     return (
         <tr>
-            <td>{genre}</td>
+            <td> {genre}</td>
             <td>{title}</td>
             <td>{author}</td>
             <td>{bookcode}</td>
