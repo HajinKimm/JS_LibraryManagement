@@ -6,6 +6,7 @@ import Logout from './components/login/Logout';
 import AddBook from './components/addbook/AddBook';
 import GlobalStyle from './styled/GlobalStyle ';
 import Footer from './components/main/Footer';
+import Header from './components/main/Header';
 
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
     <div style={{width:'100%'}}>
       <GlobalStyle/>
       <HashRouter>
+        <Header/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />

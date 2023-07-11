@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BookListWrap } from '../../styled/BookStyled';
-import Header from '../main/Header';
 import BookItem from './BookItem';
-import { useDispatch, useSelector } from 'react-redux';
-import { sortBy } from '../addbook/addFormSlice';
+import {  useSelector } from 'react-redux';
 import BookSort from './BookSort';
+import {AiOutlineDoubleLeft,AiOutlineLeft,AiOutlineRight, AiOutlineDoubleRight } from 'react-icons/ai'
 
 const BookList = () => {
     const {data, sort} = useSelector(state=>state.addForm)
-    const dispatch = useDispatch()
+    //page
+    const [currentPage, setCurrentPage] = useState(1)
+    const postsPerPage = 8
+    const pageLastNumber = Math.ceil(data.length / postsPerPage)
+    const currentPageNumber = (current)=>{
+        if( current >= 1 && current <= pageLastNumber){
+            setCurrentPage(current)
+        }
+    }
+    const firstPost = (currentPage-1)*postsPerPage
+    const lastPost = firstPost + postsPerPage
+    const currentPosts = data.slice(firstPost, lastPost)
+
+    const paging = [...Array(pageLastNumber).keys()].map(item=>item+1)
     return (
         <BookListWrap>
-            <Header/>
             <div className="inner">
                 <h2>도서 목록 &nbsp;&nbsp; <span> [ 총 {data.length}개 ]</span></h2>
-                <p className='sorBy'>
+                <p className='sorBy' onClick={()=>setCurrentPage(1)}>
                     {
                         sort.map(item=><BookSort key={item.id} item={item}/>)
                     }
@@ -40,10 +51,21 @@ const BookList = () => {
                         </thead>
                         <tbody>
                             {
-                                data.map(item => <BookItem key={item.id} item={item}/>)
+                                currentPosts.map(item => <BookItem key={item.id} item={item}/>)
                             }
                         </tbody>
                     </table>
+                </div>
+                <div className='paging'>
+                    <p>
+                        <i onClick={()=>currentPageNumber(1)}><AiOutlineDoubleLeft/></i>
+                        <i onClick={()=>currentPageNumber(currentPage-1)}><AiOutlineLeft/></i>
+                        {
+                            paging.map(item=><span key={item} onClick={()=>currentPageNumber(item)} className={currentPage===item?'on':''}>{item}</span>)
+                        }
+                        <i onClick={()=>currentPageNumber(currentPage+1)}><AiOutlineRight/></i>
+                        <i onClick={()=>currentPageNumber(pageLastNumber)}><AiOutlineDoubleRight/></i>
+                    </p>
                 </div>
             </div>
         </BookListWrap>

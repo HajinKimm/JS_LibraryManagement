@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AddBookWrap } from '../../styled/BookStyled';
-import Header from '../main/Header';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBook, changeInput, editBook } from './addFormSlice';
+import { addBook, changeInput, editBook, sortBy } from './addFormSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const AddBook = () => {
     const {editID} = useParams()
-    const {text, isEdit} = useSelector(state=>state.addForm)
+    const {text, isEdit, data, sort} = useSelector(state=>state.addForm)
     const {genre, title, author, bookcode} = text
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -22,10 +21,12 @@ const AddBook = () => {
         }
         navigate('/') 
     }
-    console.log(editID)
+    const [currentSort, setCurrentSort] = useState(sort.find(item=>item.isOn))
+    useEffect(()=>{
+        dispatch(sortBy(currentSort))
+    },[editID])
     return (
         <AddBookWrap>
-            <Header/>
             
             <div className="inner">
             <h2>도서 목록 추가</h2>
@@ -47,10 +48,18 @@ const AddBook = () => {
                             <label htmlFor="bookcode">책 코드</label>
                             <input type="text" id='bookcode' placeholder='책 코드 입력 (000001)' value={bookcode}  onChange={(e)=>dispatch(changeInput({...text, bookcode:e.target.value}))} />
                         </p>
-                        
-                        <p className='btnWrap'><button className='btn' type='submit'>
-                            {isEdit?'수정':'추가'}    
-                        </button></p>
+                        <p className='btnWrap'>
+                        {
+                            isEdit? 
+                            <>
+                                <button className='btn' type='submit'>수정</button>
+                                <button className='btn' onClick={()=>navigate(-1)}>취소</button>
+                            </>
+                            :
+                            <button className='btn' type='submit'>추가</button>
+
+                        }
+                        </p>
                     </form>
                 </div>
             </div>

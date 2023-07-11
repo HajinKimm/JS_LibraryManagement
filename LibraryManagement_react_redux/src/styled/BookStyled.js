@@ -1,5 +1,8 @@
+import { createSubscription } from 'react-redux/es/utils/Subscription';
 import styled from 'styled-components'
-
+const mainColor = '#675D50';
+const fontColor = '#F6F1E9';
+const pointColor = '#ABC4AA';
 const inner = {
     width:'1400px',
     margin:'auto',
@@ -11,10 +14,11 @@ const h2 = {
         fontSize: '30px',
         fontWeight: 700,
         marginBottom: '30px',
-        textIndent: '30px'
+        textIndent: '30px',
+        color:`${mainColor}`
 }
 export const HeaderWrap = styled.div`
-    background: #333;
+    background: ${mainColor};
     .inner{
         ${inner}
         height: 150px;
@@ -25,7 +29,7 @@ export const HeaderWrap = styled.div`
             left: 0;
             cursor: pointer;
             a{
-                color: #fff;
+                color: ${fontColor};
                 line-height: 150px;
                 font-size: 45px;
                 font-weight: 700;
@@ -42,13 +46,37 @@ export const HeaderWrap = styled.div`
                 width: 125px;
                 text-align: center;
                 margin-left: 0px;
-                color:#999;
                 font-size: 18px;
-                span{
-                    margin: 0;
-                }
                 a{
-                    color:#fff;
+                    position: relative;
+                    
+                    &::after{
+                        content: "";
+                        transition: 0.5s;
+                        display: block;
+                        position: absolute;
+                        top: -5px;left: -20px;
+                        width: 10px;height: 10px;
+                        background: ${pointColor};
+                        border-radius: 50%;
+                        transform: scale(0);
+                    }
+                    &:hover::after{
+                        transform: scale(1);
+                    }
+                    &.on{
+                        &::after{
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        top: -5px;left: -20px;
+                        width: 10px;height: 10px;
+                        background: ${pointColor};
+                        border-radius: 50%;
+                        transform: scale(1);
+                    }
+                    }
+                    color:${fontColor};
                     font-size: 18px;
                 }
             }
@@ -69,69 +97,101 @@ export const BookListWrap = styled.div`
         }
         .sorBy{
             position: absolute;
-            top: 130px;right: 0;
+            top: 120px;right: 0;
             button{
                 margin-left: 10px;
                 padding: 5px 10px;
                 background: transparent;
-                border: 1px solid #999;
-                border-radius: 15px;
+                border: 1px solid ${mainColor};
+                border-radius: 3px;
+                color: ${mainColor};
+                box-sizing: border-box;
+                cursor: pointer;
                 &:hover, &.on{
-                    background: #3281a8;
+                    background:${mainColor};
                     color: #fff;
-                    border: 1px solid #3281a8;
+                    border: 1px solid ${mainColor};
                 }
 
             }
         }
         .book-list {
             width: 100%;
-            border: 1px solid #dcdcdc;
             box-sizing: border-box;
-            padding: 100px;
+            padding: 10px 0px;
 
             .book-table {
                 width: 100%;
                 caption{display: none;}
-                .genre{
-                    width: auto;
-                }
-                .title, .author {
-                    width: 25%;
-                }
-                .del,  .bookcode {width:15%}
+                .genre{width: 10%;}
+                .title, .author {width: 30%;}
+                .bookcode {width:15%}
+                .del{width: 10%;} 
                 th,
                 td {
+                    color: ${mainColor};
                     text-align: center;
                     height: 60px;
-                    border-bottom: 1px solid #dcdcdc;
                     vertical-align: middle;
                     font-size: 18px;
                 }
+                td{
+                    padding: 5px;
+                    &:nth-child(2){
+                        font-weight: 700;
+                        /* text-align: start; */
+                    }
 
+                }
+                
                 th {
-                    border-bottom: 2px solid #000;
+                    
+                    border-bottom: 2px solid ${mainColor};
+                    border-top: 2px solid ${mainColor};
                     font-size: 21px;font-weight: 600;
                 }
-
                 tr:nth-child(odd) td {
-                    background: rgba(232, 247, 253, 0.5);
+                    background: ${fontColor};
+                }
+                tr:last-child{
+                    border-bottom: 2px solid ${mainColor};
+
                 }
 
                 button {
                     width: 35px;
                     height: 35px;
                     border: none;
-                    background: #000;
-                    color: #fff;
+                    background: ${mainColor};
+                    color: ${fontColor};
+                    border-radius: 3px;
 
                     &:first-child {
                         margin-right: 10px;
                     }
                 }
             }
-
         }
+        .paging{
+            text-align: center;
+            margin-top: 20px;
+            i{
+                font-size: 20px;
+                vertical-align: middle;
+                margin: 0px 5px;
+            }
+            span{
+                font-size: 20px;
+                margin: 0px 5px;
+                padding: 0px 10px;
+                display: inline-block;
+                &.on{
+                    background: ${pointColor};
+                    border-radius: 50%;
+                    color: #fff;
+                }
+            }
+        }   
     }
 `
 
@@ -145,14 +205,14 @@ export const AddBookWrap = styled.div`
         }
         .book-input {
             width: 100%;
-            border: 1px solid #dcdcdc;
+            border: 1px solid ${fontColor};
             box-sizing: border-box;
             padding: 100px;
             .book-form {
                 
                 p {
                     margin-bottom: 50px;
-            
+                    color: ${mainColor};
                     label {
                         width: 100px;
                         display: inline-block;
@@ -165,13 +225,13 @@ export const AddBookWrap = styled.div`
                     input {
                     width: 1050px;
                     height: 60px;
-                    border: 1px solid #999;
+                    border: 1px solid ${mainColor};
                     padding: 0 20px;
                     box-sizing: border-box;
                     font-size: 18px;
                     &::placeholder{
                             font-size: 18px;
-                            color: #999;
+                            color: ${mainColor};
                         }
                     }
                 }
@@ -183,9 +243,9 @@ export const AddBookWrap = styled.div`
                         width: 300px;
                         height: 50px;
                         text-align: center;
-                        background: #333;
+                        background: ${mainColor};
                         border: none;
-                        color: #fff;
+                        color:${fontColor};
                         font-size: 18px;
                         margin-top: 20px;
                         cursor: pointer;
@@ -217,7 +277,7 @@ export const LoginWrap = styled.div`
         }
         .form{
             width: 100%;
-            border: 1px solid #dcdcdc;
+            border: 1px solid ${fontColor};
             box-sizing: border-box;
             padding: 100px;
             
@@ -226,12 +286,14 @@ export const LoginWrap = styled.div`
                 margin: auto;
                 padding-bottom: 30px;
                 p{
+                    color: ${mainColor};
                     height: 50px;
                     vertical-align: middle;
                     font-size: 20px;
                     margin-bottom: 40px;
                     label{
                         width: 100px;display:inline-block; 
+                        color: ${mainColor};
                     }
                     input{
                         width: 400px;
@@ -245,7 +307,7 @@ export const LoginWrap = styled.div`
                     }
                 }
                 .question{
-                    border-top: 1px solid #dcdcdc;
+                    border-top: 1px solid ${fontColor};
                     text-align:center;
                     padding-top: 50px;
                     margin-top: 50px;
@@ -253,30 +315,34 @@ export const LoginWrap = styled.div`
                     font-weight: 700;
                 }
                 .loginInfo{
-                    border-bottom: 1px solid #dcdcdc;
+                    border-bottom: 1px solid ${fontColor};
                     text-align:center;
                     padding-bottom: 50px;
                     margin-bottom: 75px;
                     font-size: 25px;
                     font-weight: 700;
                 }
+                span{
+                    
+                    color: ${mainColor};
+                }
             }
             .btnWrap{
                     text-align: center;
                     .btn {
                         text-align: center;
-                        background: #333;
+                        background: ${mainColor};
                         border: none;
-                        color: #fff;
+                        color: ${fontColor};
                         font-size: 18px;
                         margin-top: 20px;
                         cursor: pointer;
                         font-weight: 700;
-                        border-radius: 25px;
-                        width: 300px;
+                        border-radius: 5px;
+                        width: 250px;
                         height: 50px;
                         &:nth-child(2n){
-                            margin-left: 30px;
+                            margin-left: 70px;
                         }
                     }
 
@@ -286,6 +352,39 @@ export const LoginWrap = styled.div`
 `
 
 export const FooterWrap = styled.div`
-height: 150px;
-background: #333;
+/* height: 150px; */
+background: ${mainColor};
+    color: ${fontColor};
+    ul{
+        display: flex;
+        padding-top: 100px;
+        margin-bottom: 50px;
+        justify-content: center;
+        li{
+            margin-right: 100px;
+            position: relative;
+            &::after{
+                content: "";
+                position: absolute;
+                top: 50%;right: -50px; transform : translateY(-50%);
+                display: block;
+                width: 1px;height: 16px;
+                background: ${pointColor};
+            }
+            &:last-child{
+                margin-right: 0;
+                &::after{
+                    display: none;
+                }
+            }
+            a{
+                color:${fontColor}
+            }
+        }
+    }
+    span{
+        display: block;
+        text-align: center;
+        padding-bottom: 50px;
+    }
 `
