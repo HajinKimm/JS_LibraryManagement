@@ -9,7 +9,7 @@ const BookList = () => {
     const {data, sort} = useSelector(state=>state.addForm)
     //page
     const [currentPage, setCurrentPage] = useState(1)
-    const postsPerPage = 8
+    const postsPerPage = 5
     const pageLastNumber = Math.ceil(data.length / postsPerPage)
     const currentPageNumber = (current)=>{
         if( current >= 1 && current <= pageLastNumber){

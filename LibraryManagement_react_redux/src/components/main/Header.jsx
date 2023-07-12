@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <HeaderWrap>
             <div className="inner">
-                <h1><Link to={'/'}>북카페 도서 관리 시스템</Link></h1>
+                <h1><Link to={'/'}>북카페 도서 관리</Link></h1>
                 <NavBar/>
             </div>
         </HeaderWrap>

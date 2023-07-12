@@ -6,10 +6,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const AddBook = () => {
     const {editID} = useParams()
-    const {text, isEdit, data, sort} = useSelector(state=>state.addForm)
+    const {text, isEdit, sort} = useSelector(state=>state.addForm)
     const {genre, title, author, bookcode} = text
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [currentSort, setCurrentSort] = useState(sort.find(item=>item.isOn))
+
     const onSubmit=(e)=>{
         e.preventDefault()
         if(!genre || !title || !author || !bookcode)  return
@@ -20,11 +22,9 @@ const AddBook = () => {
             dispatch(addBook(text))
         }
         navigate('/') 
-    }
-    const [currentSort, setCurrentSort] = useState(sort.find(item=>item.isOn))
-    useEffect(()=>{
         dispatch(sortBy(currentSort))
-    },[editID])
+    }
+
     return (
         <AddBookWrap>
             

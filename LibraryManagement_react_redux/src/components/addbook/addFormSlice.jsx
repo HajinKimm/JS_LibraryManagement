@@ -43,7 +43,6 @@ export const addFormSlice = createSlice({
             if(category === 'bookcode'){
                 state.data.sort((a,b)=>a.bookcode.localeCompare(b.bookcode))
             }
-            
         },
         changeInput(state, action){
             const { genre, title, author, bookcode } = action.payload;
