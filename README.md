@@ -6,10 +6,10 @@
 
 
 ---
-- Version1. JavaScript + css : https://hajinkimm.github.io/LibraryManagement/LibraryManagement_js/
-- Version2. React + sass : https://hajinkimm.github.io/LibraryManagement/LibraryManagement_react/dist/
-- Version3. React_Context : https://hajinkimm.github.io/LibraryManagement/LibraryManagement_react_context/dist/
-- Version4. React_Redux : https://hajinkimm.github.io/LibraryManagement/LibraryManagement_react_redux/dist/
+- Version1. JavaScript + css : https://hajinkimm.github.io/JS_LibraryManagement/LibraryManagement_js/
+- Version2. React + sass : https://hajinkimm.github.io/JS_LibraryManagement/LibraryManagement_react/dist/
+- Version3. React_Context : https://hajinkimm.github.io/JS_LibraryManagement/LibraryManagement_react_context/dist/
+- Version4. React_Redux : https://hajinkimm.github.io/JS_LibraryManagement/LibraryManagement_react_redux/dist/
 ---
 # Version 1
 
